@@ -71,7 +71,9 @@ In this lab, you will create a policy to:
 28. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
 29. Click Save Changes.
 <br><br>
+
 ## Verification
+
 1. SSH to the EC2 instance created in the spoke1-vpc, spoke-z2-app
 2. Execute `curl https://www.example.com -kv -d "613-63-6333 613-63-6333 613-63-6333" -o /dev/null`
 3. Check that you get a 502 Bad Gateway error

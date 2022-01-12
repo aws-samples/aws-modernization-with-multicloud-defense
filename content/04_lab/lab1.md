@@ -49,6 +49,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 15. Click **Save & Continue**
 
 ## Verification
+
 1. Navigate to **Discovery -> Inventory -> Summary**. This page provides a list of cloud resources that was discovered by Valtix. On one page, we see everything in your account. 
 2. Now generate traffic to see DNS and VPC information:
       a. SSH to the EC2 instance created in the spoke1-vpc. Default user is centos. (eg. `ssh -i <private_key.pem> centos@<ec2_eip>`)

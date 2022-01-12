@@ -51,6 +51,7 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
 <br><br>
 
 ## Verification 
+
 1. Navigate to **Manage -> Gateways -> Service VPCs**
 2. Verify the Service VPC exist in the table. Check that the status is **ACTIVE**
 3. Navigate to **Manage -> Gateways -> Gateways**.
