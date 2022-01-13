@@ -1,19 +1,19 @@
 ---
-title: "AWS Modernization Workshop"
+title: "Modernize Multi-Account Network Security with Valtix"
 chapter: true
 weight: 1
 ---
 
-# AWS Modernization Workshop
+# Modernize Multi-Account Network Security with Valtix
 
-### Welcome
+![Valtix](valtix.jpg)
 
-In this workshop you will learn why DevOps is a pattern for modernization and how to use patterns to release features and functionality at a faster pace.
+## Welcome
 
-### Learning Objectives
-- Deploy Cloud9 as an IDE for completing workshop exercises.
-- How DevOps patterns help to release features and functionality faster.
-- Best practices for implementing 2 pizza team pipelines.
+In this workshop you will learn why DevOps is a pattern for modernization and how to use patterns to release features and functionality at a faster pace. Valtix will demostrate how you can deploy a scalable security architecture that secure your workloads in a matter of minutes.
+
+Valtix is the first and only multi-cloud network security platform delivered as a service that enables cloud teams to meet the most stringent security requirements in a cloud-first & simple way. Whether you are planning to move to the cloud or you're looking to simplify your security workflow on existing infrastructure, Valtix is able to help you get there. 
+
 
 {{% notice warning %}}
 <p style='text-align: left;'>

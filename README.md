@@ -1,11 +1,7 @@
-## My Project
+## MODERNIZE MULTI-ACCOUNT NETWORK SECURITY WITH VALTIX
 
-TODO: Fill this README out!
+This is the github repository for AWS workshop presented by Valtix. To view the workshop, please visit AWS workshop page.
 
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
 
 ## Security
 
