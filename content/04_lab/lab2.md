@@ -41,7 +41,7 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
      SSH Key Pair| Select any ssh key pair that you want to use. 
      
 6. Click **Save & Continue**
-7. You will be landed on the inventory page. Click on VPCs/VNets. 
+7. You will be landed on the inventory page(**Manage -> Cloud Accounts -> Inventory**). Click on VPCs/VNets. 
 ![VPC](Inventory_VPC.png)
 8. A list of all the VPCs in your account is shown here. This table will indicate whether the VPC is secured by Valtix. Find the spoke VPC that was deployed in the pre-requisite section.
 9. Click on Secure button and select the Service VPC that was created in step 3.<br>

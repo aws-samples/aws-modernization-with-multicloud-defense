@@ -58,7 +58,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
     ```
     curl http://www.google.com
     curl http://www.facebook.com
-    wget -O /dev/null -o /dev/null http://purplehoodie.com
+    curl -o /dev/null --silient http://purplehoodie.com
     ```
     
 4. Navigate to **Discovery -> Traffic -> DNS**.

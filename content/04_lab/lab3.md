@@ -79,8 +79,8 @@ In this lab, you will create a policy to:
 3. Check that you get a 502 Bad Gateway error
 4. Go to **Investigate -> Flow Analytics -> Network Threats**
 5. You will note logs for the DLP dropped requests with a message: Sensitive Data was Transmitted Across the Network
-6. Download a file from valtix-security repository on spoke1-vpc. `wget https://github.com/valtix-security/tutorials/raw/main/test.zip`. This connection should be allowed.
-7. Download a file from a different github account. eg `wget https://github.com/michaelvaltix/tutorials/blob/main/test_file.txt`. This connection should be denied.
+6. Download a file from valtix-security repository on spoke1-vpc. `curl -o test.zip https://github.com/valtix-security/tutorials/raw/main/test.zip`. This connection should be allowed.
+7. Download a file from a different github account. eg `curl -o test_file.txt https://github.com/michaelvaltix/tutorials/blob/main/test_file.txt`. This connection should be denied.
 8. Navigate to **Investigate -> Flow Analytics -> URL Filtering**.
-9. You should see both the allow session and the deny session for the 2 wget from github.
+9. You should see both the allow session and the deny session for the 2 curl from github.
 10. Notice that we did not specify any IP address in the policy, but the vm instance still matches the policy. This is because of the tag-based object that we used in the policy. This policy will be applied to any instance that has the tag **prod**. This allows for the policy to be dynamic. Future instances that is considered as prod environment will by this rule applied simply by adding tag value {Category: prod}  
