@@ -46,7 +46,7 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
 8. A list of all the VPCs in your account is shown here. This table will indicate whether the VPC is secured by Valtix. Find the spoke VPC that was deployed in the pre-requisite section.
 9. Click on Secure button and select the Service VPC that was created in step 3.<br>
 ![secure](secure.png) <br>
-10. Login to AWS console and find the Route Table of the spoke VPC. Change the route 0.0.0.0/0 to point to Transit Gateway created.<br>
+10. Checkbox the all route table entries in the Route Table section. This will change the subnet route table to point to Transit Gateway. <br>
 **Note:** After changing the default route, you may lose connection to the ec2 instance. To avoid being disconnected, add a route from your public ip to the Internet Gateway for the VPC.
 <br><br>
 
