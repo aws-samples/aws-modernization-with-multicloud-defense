@@ -20,9 +20,9 @@ In this lab, you will create a policy to:
 2. Navigate to **Manage -> Security Policies -> Addresses**
 3. Click **Create Address**.
 4. Select **Src/Dest**.
-5. Provide a name (e.g vm-tag-dev)
+5. Provide a name (e.g vm-tag-prod)
 6. Select the object type as **User Defined Tag**
-7. Under the Instances Tag table, select the key Category and value prod
+7. Under the Instances Tag table, select the key "**Category**" and value "**prod**"
 8. Click Save to save the address object
 9. Go to **Manage -> Profiles -> Network Threats**.
 10. Click **Create Intrusion Profile**
@@ -59,11 +59,11 @@ In this lab, you will create a policy to:
 
      Parameter| Value
      ---------|------
-     Name | block_credit_card
+     Name | Egress_prod
      Type | Forward Proxy
      Service | valtix-sample-egress-forward-proxy
      Source | any
-     Action | Deny Log
+     Action | Allow Log
      Data Loss Prevention | block_social_security
      URL Filtering | allow-valtix-security-github
 
@@ -74,13 +74,16 @@ In this lab, you will create a policy to:
 
 ## Verification
 
-1. SSH to the EC2 instance created in the spoke1-vpc, spoke-z2-app
-2. Execute `curl https://www.example.com -kv -d "613-63-6333 613-63-6333 613-63-6333" -o /dev/null`
+1. SSH to the EC2 instance named **spoke-z1-app**
+2. Execute `curl https://www.example.com -kv -d "6604-05-1120 604-05-1121" -o /dev/null`
 3. Check that you get a 502 Bad Gateway error
 4. Go to **Investigate -> Flow Analytics -> Network Threats**
 5. You will note logs for the DLP dropped requests with a message: Sensitive Data was Transmitted Across the Network
-6. Download a file from valtix-security repository on spoke1-vpc. `curl -o test.zip https://github.com/valtix-security/tutorials/raw/main/test.zip`. This connection should be allowed.
-7. Download a file from a different github account. eg `curl -o test_file.txt https://github.com/michaelvaltix/tutorials/blob/main/test_file.txt`. This connection should be denied.
+6. Download a file from valtix-security repository on spoke1-vpc. `curl -o test.zip -kv https://github.com/valtix-security/tutorials/raw/main/test.zip`. This connection should be allowed.
+7. Download a file from a different github account. eg `curl -o test_file.txt -kv https://github.com/michaelvaltix/tutorials/blob/main/test_file.txt`. This connection should be denied.
 8. Navigate to **Investigate -> Flow Analytics -> URL Filtering**.
 9. You should see both the allow session and the deny session for the 2 curl from github.
 10. Notice that we did not specify any IP address in the policy, but the vm instance still matches the policy. This is because of the tag-based object that we used in the policy. This policy will be applied to any instance that has the tag **prod**. This allows for the policy to be dynamic. Future instances that is considered as prod environment will by this rule applied simply by adding tag value {Category: prod}  
+11. SSH to the EC2 instance named **spokez2-app**.
+12. Repeat steps 2 - 10. You will notice that all traffic passes because it is matching a different policy. 
+
