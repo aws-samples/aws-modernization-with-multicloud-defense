@@ -17,23 +17,19 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 4. Click on AWS logo. This will take you to the onboarding page to link your AWS account to the Valtix Controller.
 5. To onboard your AWS account, there is a 2 step process:
       * Deploy of CloudFormation template to create necessary IAM permission for Valtix Controller - step 6
-      * Fill in the form in the onboarding screen to add account to Valtix Controller - step 11
+      * Fill in the form in the onboarding screen to add account to Valtix Controller - step 10
 6. Click on the CloudFormation link at the top of the page. This will open up another tab to deploy CloudFormation template in your AWS account. It may ask you to log in to your AWS account.
-7. In the CloudFormation template, most of the mandatory fields have been auto-filled. Fill in the following parameters:
-
-     Parameter | Description
-     ----------|-------------
-     S3 Bucket Name | Supply a unique **S3 bucket name**. This bucket name needs to be globally unique in AWS. See [bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
- 
-8. Select the checkbox "**I acknowledge that AWS CloudFormation might create IAM resources with custom names**", and then click **Create Stack**.
-9. Wait for the CloudFormation stack to complete. This may take a few minutes.
-10. Navigate back to the Valtix Controller tab. You should still be on the onboarding page where you clicked on CloudFormation template link.
-11. Fill out the information to onboard AWS account on Valtix Controller. Most information is filled in already, below are 2 parameter participant would need to fill in. 
+7. Select the checkbox "**I acknowledge that AWS CloudFormation might create IAM resources with custom names**", and then click **Create Stack**.
+8. Wait for the CloudFormation stack to complete. This may take a few minutes.
+9. Navigate back to the Valtix Controller tab. You should still be on the onboarding page where you clicked on CloudFormation template link.
+10. Fill out the information to onboard AWS account on Valtix Controller. Most information is filled in already, below are 2 parameter participant would need to fill in. 
 
      Parameter | Description
      ---------|--------------
-     Account Name | Provide account name.
-     Controller IAM role | This information is given in the CloudFormation stack output. Look at the value for `ValtixControllerRoleArn` in the output tab. 
+     AWS Account Number | AWS Account Number. This can be found in CloudFormation stack output.
+     Account Name | Provide account name. This is used only in Valtix Controller to reference this AWS account.
+     Controller IAM Role | This information is given in the CloudFormation stack output. Look at the value for `ValtixControllerRoleArn` in the output tab. 
+     Inventory Monitor Role | This information is given in the CloudFormation stack output. Look at the value for `ValtixInventoryRoleArn` in the output tab. 
 
 12. Click **Save & Continue**. You have successfully onboarded your account and Valtix Controller will discover your inventory.
 13. Navigate to **Easy Setup -> Traffic Visibility**.
@@ -52,13 +48,16 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 
 1. Navigate to **Discovery -> Inventory -> Summary**. This page provides a list of cloud resources that was discovered by Valtix. On one page, we see everything in your account. 
 2. Now generate traffic to see DNS and VPC information:
-      a. SSH to the EC2 instance created in the spoke1-vpc. Default user is centos. (eg. `ssh -i <private_key.pem> centos@<ec2_eip>`)
-      b. Generate traffic to following website:
+
+      1.  SSH to the EC2 instance created in the spoke1-vpc. Default user is centos. (eg. `ssh -i <private_key.pem> centos@<ec2_eip>`)
+      1.  Generate traffic to following website:
+
 
     ```
     curl http://www.google.com
     curl http://www.facebook.com
-    curl -o /dev/null --silient http://purplehoodie.com
+    curl -o /dev/null -silient http://purplehoodie.com
+    sudo yum -y update &
     ```
     
 4. Navigate to **Discovery -> Traffic -> DNS**.
