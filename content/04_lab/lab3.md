@@ -6,7 +6,8 @@ weight: 7
 
 # Lab 3: Defend
 
-In this lab, you will create a policy to:
+In this lab, you will create a tag-based policy to:
+
   * prevent social security information from being exported from one of the spoke instances. 
   * allow connection to approved github accounts only.
 

@@ -21,10 +21,11 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
      CSP Account| Select the account that was onboarded in Lab1.
      Region| Select the region where you deployed your CFT. 
      CIDR Block| Provide any /16 subnet. Example 10.100.0.0/16
-     Availability Zones|Select any one zone.
+     Availability Zones|Recommended that you select two AZ for redundancy.
      Transit Gateway| Select “create-new”
      Transit Gateway Name|  Provide a name for Transit Gateway. Example valtix-workshop-tgw.
      Auto Accept shared attachments| Leave it unchecked.
+     Use NAT Gateway| Leave it unchecked.
 
 3. Click on **Save & Continue**. This process may take 5 minutes. During this time, please do not navigate to a different link.
 4. After completing the deployment of Service VPC, you should be taken to Create Gateway page where Valtix will orchestrate the deployment of Valtix Gateway in the Service VPC that was created.
@@ -47,7 +48,7 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
 9. Click on Secure button and select the Service VPC that was created in step 3.<br>
 ![secure](secure.png) <br>
 10. Checkbox the all route table entries in the Route Table section. This will change the subnet route table to point to Transit Gateway. <br>
-**Note:** After changing the default route, you may lose connection to the ec2 instance. To avoid being disconnected, add a route from your public ip to the Internet Gateway for the VPC.
+**Note:** After changing the default route, you may lose connection to the sample ec2 instance. Reconnect to your sample ec2 instance.
 <br><br>
 
 ## Verification 
