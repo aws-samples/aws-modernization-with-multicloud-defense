@@ -54,7 +54,7 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
 ## Verification 
 
 1. Navigate to **Manage -> Gateways -> Service VPCs**
-2. Verify the Service VPC exist in the table. Check that the status is **ACTIVE**
+2. Verify the Service VPC exist in the table. Check that the State is **ACTIVE**
 3. Navigate to **Manage -> Gateways -> Gateways**.
 4. Check the Gateway is shown in the table and that status is **ACTIVE**.
 5. From the EC2 instance, generate traffic to Google and Facebook.

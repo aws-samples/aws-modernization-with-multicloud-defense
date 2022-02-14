@@ -31,7 +31,7 @@ In this lab, you will create a tag-based policy to:
 12. Provide a name (e.g block_social_security)
 13. In the DLP Filter List table, type US Social Security Number in the Patterns text column/field
 14. Set 2 in the Count (sending more than 2 SSNs in the traffic would trigger the action)
-15. Select Drop as the Action
+15. Select **Deny Log** as the Action
 16. Save the profile
 17. Navigate to **Manage -> Profiles -> URL Filtering**.
 18. Click on **Create** button.
@@ -43,6 +43,7 @@ In this lab, you will create a tag-based policy to:
      URLs/Categories | http.\*github.com/valtix-security.\*
      Methods | ALL
      Policy | Allow Log
+     Return Status Code
 
 21. Add another URL list by clicking on the **Add** button within the same profile.
 22. Fill in the following information in the new URL list entry:
@@ -53,9 +54,10 @@ In this lab, you will create a tag-based policy to:
      Methods | ALL
      Policy | Deny Log
 
-23. Click **Manage -> Security Policies -> Rules**
+23. Click **Save**
+23. Click **Manage -> Security Policies -> Rule Sets**
 24. Click the "valtix-sample-egress-policy-ruleset" ruleset.
-25. Click Create to create a new rule.  A new rule editor opens in the slide over panel on the right
+25. Click **Add** to create a new rule.  A new rule editor opens in the slide over panel on the right
 26. Fill in the following information:
 
      Parameter| Value
@@ -63,21 +65,34 @@ In this lab, you will create a tag-based policy to:
      Name | Egress_prod
      Type | Forward Proxy
      Service | valtix-sample-egress-forward-proxy
-     Source | any
+     Source | vm-tag-prod
+     Destination | any
      Action | Allow Log
+     Network Intrusion | valtix-sample-ips-balanced-alert
      Data Loss Prevention | block_social_security
      URL Filtering | allow-valtix-security-github
 
-27. Click **Save**.
 28. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
-29. Click Save Changes.
+29. Click **Save Changes**.
 <br><br>
 
 ## Verification
 
 1. SSH to the EC2 instance named **spoke-z1-app**
 2. Execute `curl https://www.example.com -kv -d "6604-05-1120 604-05-1121" -o /dev/null`
-3. Check that you get a 502 Bad Gateway error
+3. Check that you get a 502 Bad Gateway error.
+
+     `
+     * upload completely sent off: 24 out of 24 bytes
+     < HTTP/1.1 502 Bad Gateway
+     < Server: nginx/1.12.2
+     < Date: Fri, 11 Feb 2022 02:11:36 GMT
+     < Content-Type: text/html
+     < Content-Length: 500
+     < Connection: close
+     < ETag: "61dfafc2-1f4"
+     `
+
 4. Go to **Investigate -> Flow Analytics -> Network Threats**
 5. You will note logs for the DLP dropped requests with a message: Sensitive Data was Transmitted Across the Network
 6. Download a file from valtix-security repository on spoke1-vpc. `curl -o test.zip -kv https://github.com/valtix-security/tutorials/raw/main/test.zip`. This connection should be allowed.
@@ -85,6 +100,6 @@ In this lab, you will create a tag-based policy to:
 8. Navigate to **Investigate -> Flow Analytics -> URL Filtering**.
 9. You should see both the allow session and the deny session for the 2 curl from github.
 10. Notice that we did not specify any IP address in the policy, but the vm instance still matches the policy. This is because of the tag-based object that we used in the policy. This policy will be applied to any instance that has the tag **prod**. This allows for the policy to be dynamic. Future instances that is considered as prod environment will by this rule applied simply by adding tag value {Category: prod}  
-11. SSH to the EC2 instance named **spokez2-app**.
-12. Repeat steps 2 - 10. You will notice that all traffic passes because it is matching a different policy. 
+11. SSH to the EC2 instance named **spoke-z2-app**.
+12. Repeat steps 2 - 10. You will notice that all traffic passes because it is matching a different policy. It is matching "valtix-sample-egress-forwarding-allow" policy rather than the policy we created because spoke-z2-app does not have the correct tag. 
 
