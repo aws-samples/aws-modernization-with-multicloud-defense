@@ -82,7 +82,7 @@ In this lab, you will create a tag-based policy to:
 2. Execute `curl https://www.example.com -kv -d "6604-05-1120 604-05-1121" -o /dev/null`
 3. Check that you get a 502 Bad Gateway error.
 
-     `
+     ```
      * upload completely sent off: 24 out of 24 bytes
      < HTTP/1.1 502 Bad Gateway
      < Server: nginx/1.12.2
@@ -91,7 +91,7 @@ In this lab, you will create a tag-based policy to:
      < Content-Length: 500
      < Connection: close
      < ETag: "61dfafc2-1f4"
-     `
+     ```
 
 4. Go to **Investigate -> Flow Analytics -> Network Threats**
 5. You will note logs for the DLP dropped requests with a message: Sensitive Data was Transmitted Across the Network
