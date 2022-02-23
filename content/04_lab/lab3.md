@@ -23,7 +23,7 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
    * Add a tag to the EC2 instance spoke-z1-app with key "**Category**" and value "**prod**"
    * Add a tag to the EC2 instance spoke-z2-app with key "**Category**" and value "**dev**"
 
-     <b>Note:</b> If you go to **Discover -> Inventory -> Tags**, you'll notice there is a Tag Name of **Category** that shows up.
+     <b>Note:</b> If you go to **Discover -> Inventory -> Tags**, you'll notice there is a Tag Name **Category** that shows up. 
 
 2. Create Address Object
 
