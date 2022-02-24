@@ -18,13 +18,15 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 
 ## Procedure
 
-1. To create tag-based policy we need to first tag our workloads properly. Valtix's continuous discovery will provide you with real-time inventory changes within seconds. Let's go to the AWS console and add the tags to the spoke EC2 instances
+1. To create tag-based policy we need to first tag our workloads properly. Let's go to the AWS console and add the tags to the spoke EC2 instances
 
    * Add a tag to the EC2 instance spoke-z1-app with key "**Category**" and value "**prod**"
    * Add a tag to the EC2 instance spoke-z2-app with key "**Category**" and value "**dev**"
 
-     <b>Note:</b> If you go to **Discover -> Inventory -> Tags**, you'll notice there is a Tag Name **Category** that shows up. 
-
+     ---
+     **Note:** 
+     If you go to *Discover -> Inventory -> Tags*, you'll notice there is a Tag Name "*Category*" that shows up. Valtix continuous discovery picked up the tags that was just created, in real-time
+     ---
 2. Create Address Object
 
 	1. Navigate to **Manage -> Security Policies -> Addresses**
@@ -44,8 +46,9 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 	6. Set 2 in the Count (sending more than 2 SSNs in the traffic would trigger the action)
 	7. Select **Deny Log** as the Action
 	8. **Save** the profile
+
 4. Create URL Filtering Profile 
-	1.Navigate to **Manage -> Profiles -> URL Filtering**.
+	1. Navigate to **Manage -> Profiles -> URL Filtering**.
 	2. Click on **Create** button.
 	3. Provide a name for the URL profile. (eg. allow-valtix-security-github)
 	4. Fill in the following information:
@@ -88,6 +91,12 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 	5. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
 	6. Click **Save Changes**.
 <br><br>
+
+      --- 
+      **Policy Explanation:**<br>
+      The policy that we just created will match all workloads that is tagged as "prod" and the policy will apply advanced security profiles(IPS, DLP, URL Filtering) on the session that is matched. All "prod" workloads can connect to github repository named "valtix-security" and no other URLs. 
+      ---
+    
 
 ## Verification
 
