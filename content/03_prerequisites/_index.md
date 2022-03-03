@@ -30,7 +30,7 @@ weight: 3
         AMI for App Instance| AMI to use for the EC2 instance.
         Instance Type | Instance Type to use for EC2 instance
         EC2 Key Pair | The EC2 key pair to used for EC2 instance.
-        Public IP | Public IP of the machine that is used to login to the EC2 instance. eg `98.142.34.5/32`
+        Public IP | Public IP of the machine that is used to login to the EC2 instance. eg `98.142.34.5`
      
      * This would be referred to as spoke deployment or spoke1-vpc. If you want to use your own ec2 instances for this workshop, whenever there is reference to spoke, you can use your own ec2 instances.
 
