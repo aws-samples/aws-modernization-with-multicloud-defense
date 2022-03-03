@@ -11,70 +11,92 @@ In this lab, you will create a tag-based policy to:
   * prevent social security information from being exported from one of the spoke instances. 
   * allow connection to approved github accounts only.
 
+Below is a diagram to show how policy is related to policy ruleset that is applied on the Gateways.
+
+![Ruleset](ruleset.svg)
+
+
 ## Procedure
 
-1. Go to the AWS console and add the tags to the spoke EC2 instances
+1. To create tag-based policy we need to first tag our workloads properly. Let's go to the AWS console and add the tags to the spoke EC2 instances
 
    * Add a tag to the EC2 instance spoke-z1-app with key "**Category**" and value "**prod**"
    * Add a tag to the EC2 instance spoke-z2-app with key "**Category**" and value "**dev**"
 
-2. Navigate to **Manage -> Security Policies -> Addresses**
-3. Click **Create Address**.
-4. Select **Src/Dest**.
-5. Provide a name (e.g vm-tag-prod)
-6. Select the object type as **User Defined Tag**
-7. Under the Instances Tag table, select the key "**Category**" and value "**prod**"
-8. Click Save to save the address object
-9. Go to **Manage -> Profiles -> Network Threats**.
-10. Click **Create Intrusion Profile**
-11. Select **Data Loss Prevention**
-12. Provide a name (e.g block_social_security)
-13. In the DLP Filter List table, type US Social Security Number in the Patterns text column/field
-14. Set 2 in the Count (sending more than 2 SSNs in the traffic would trigger the action)
-15. Select **Deny Log** as the Action
-16. Save the profile
-17. Navigate to **Manage -> Profiles -> URL Filtering**.
-18. Click on **Create** button.
-19. Provide a name for the URL profile. (eg. allow-valtix-security-github)
-20. Fill in the following information:
+     ---
+     **Note:** 
+     If you go to *Discover -> Inventory -> Tags*, you'll notice there is a Tag Name "*Category*" that shows up. Valtix continuous discovery picked up the tags that was just created, in real-time
+     ---
+2. Create Address Object
 
-     Parameter | Value
-     ----------|----------
-     URLs/Categories | http.\*github.com/valtix-security.\*
-     Methods | ALL
-     Policy | Allow Log
-     Return Status Code
+	1. Navigate to **Manage -> Security Policies -> Addresses**
+	2. Click **Create Address**.
+	3. Select **Src/Dest**.
+	4. Provide a name (e.g vm-tag-prod)
+	5. Select the object type as **User Defined Tag**
+	6. Under the Instances Tag table, select the key "**Category**" and value "**prod**"
+	7. Click **Save** to save the address object
 
-21. Add another URL list by clicking on the **Add** button within the same profile.
-22. Fill in the following information in the new URL list entry:
+3. Create Data Loss Protection Profile
+	1. Go to **Manage -> Profiles -> Network Threats**.
+	2. Click **Create Intrusion Profile**
+	3. Select **Data Loss Prevention**
+	4. Provide a name (e.g block_social_security)
+	5. In the DLP Filter List table, type US Social Security Number in the Patterns text column/field
+	6. Set 2 in the Count (sending more than 2 SSNs in the traffic would trigger the action)
+	7. Select **Deny Log** as the Action
+	8. **Save** the profile
 
-     Parameter | Value
-     ----------|----------
-     URLs/Categories | http.\*github.com/.\*
-     Methods | ALL
-     Policy | Deny Log
+4. Create URL Filtering Profile 
+	1. Navigate to **Manage -> Profiles -> URL Filtering**.
+	2. Click on **Create** button.
+	3. Provide a name for the URL profile. (eg. allow-valtix-security-github)
+	4. Fill in the following information:
 
-23. Click **Save**
-23. Click **Manage -> Security Policies -> Rule Sets**
-24. Click the "valtix-sample-egress-policy-ruleset" ruleset.
-25. Click **Add** to create a new rule.  A new rule editor opens in the slide over panel on the right
-26. Fill in the following information:
+     	Parameter | Value
+     	----------|----------
+     	URLs/Categories | http.\*github.com/valtix-security.\*
+     	Methods | ALL
+     	Policy | Allow Log
+     	Return Status Code | 502
 
-     Parameter| Value
-     ---------|------
-     Name | Egress_prod
-     Type | Forward Proxy
-     Service | valtix-sample-egress-forward-proxy
-     Source | vm-tag-prod
-     Destination | any
-     Action | Allow Log
-     Network Intrusion | valtix-sample-ips-balanced-alert
-     Data Loss Prevention | block_social_security
-     URL Filtering | allow-valtix-security-github
+	5. Add another URL list by clicking on the **Add** button within the same profile.
+	6. Fill in the following information in the new URL list entry:
 
-28. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
-29. Click **Save Changes**.
+     	Parameter | Value
+     	----------|----------
+     	URLs/Categories | http.\*github.com/.\*
+     	Methods | ALL
+     	Policy | Deny Log
+
+	7. Click **Save**
+5. Create Policy in Ruleset. Now we have all the components to create a policy. 
+	1. Click **Manage -> Security Policies -> Rule Sets**
+	2. Click the "valtix-sample-egress-policy-ruleset" ruleset.
+	3. Click **Add** to create a new rule.  A new rule editor opens in the slide over panel on the right
+	4. Fill in the following information:
+
+     	Parameter| Value
+     	---------|------
+     	Name | Egress_prod
+     	Type | Forward Proxy
+     	Service | valtix-sample-egress-forward-proxy
+     	Source | vm-tag-prod
+     	Destination | any
+     	Action | Allow Log
+     	Network Intrusion | valtix-sample-ips-balanced-alert
+     	Data Loss Prevention | block_social_security
+     	URL Filtering | allow-valtix-security-github
+
+	5. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
+	6. Click **Save Changes**.
 <br><br>
+
+      --- 
+      **Policy Explanation:**<br>
+      The policy that we just created will match all workloads that is tagged as "prod" and the policy will apply advanced security profiles(IPS, DLP, URL Filtering) on the session that is matched. All "prod" workloads can connect to github repository named "valtix-security" and no other URLs. 
+      ---
+    
 
 ## Verification
 
@@ -100,6 +122,5 @@ In this lab, you will create a tag-based policy to:
 8. Navigate to **Investigate -> Flow Analytics -> URL Filtering**.
 9. You should see both the allow session and the deny session for the 2 curl from github.
 10. Notice that we did not specify any IP address in the policy, but the vm instance still matches the policy. This is because of the tag-based object that we used in the policy. This policy will be applied to any instance that has the tag **prod**. This allows for the policy to be dynamic. Future instances that is considered as prod environment will by this rule applied simply by adding tag value {Category: prod}  
-11. SSH to the EC2 instance named **spoke-z2-app**.
-12. Repeat steps 2 - 10. You will notice that all traffic passes because it is matching a different policy. It is matching "valtix-sample-egress-forwarding-allow" policy rather than the policy we created because spoke-z2-app does not have the correct tag. 
+11. Repeat the verification steps for spoke-z2-app. You will notice that all traffic passes because it is matching a different policy. It is matching "valtix-sample-egress-forwarding-allow" policy rather than the policy we created because spoke-z2-app does not have the correct tag. 
 
