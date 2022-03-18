@@ -58,7 +58,6 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
      	URLs/Categories | http.\*github.com/valtix-security.\*
      	Methods | ALL
      	Policy | Allow Log
-     	Return Status Code | 502
 
 	5. Add another URL list by clicking on the **Add** button within the same profile.
 	6. Fill in the following information in the new URL list entry:
@@ -68,6 +67,7 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
      	URLs/Categories | http.\*github.com/.\*
      	Methods | ALL
      	Policy | Deny Log
+     	Return Status Code | 502
 
 	7. Click **Save**
 5. Create Policy in Ruleset. Now we have all the components to create a policy. 
