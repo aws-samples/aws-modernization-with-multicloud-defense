@@ -49,23 +49,57 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 1. Navigate to **Discovery -> Inventory -> Summary**. This page provides a list of cloud resources that was discovered by Valtix. On one page, we see everything in your account. 
 2. Now generate traffic to see DNS and VPC information:
 
-      1.  SSH to the EC2 instance created in the spoke1-vpc. Default user is centos. (eg. `ssh -i <private_key.pem> centos@<ec2_eip>`)
-      1.  Generate traffic to following website:
+      *  Navigate to AWS console EC2 Service page and select spoke-z1-app instance.
+      *  Click on "Connect" button at the top.
+      *  Use session manager to connect to your instance.
+      *  Generate traffic to following website from the instance's session manager console:
 
-
-    ```
-    curl http://www.google.com
-    curl http://www.facebook.com
-    curl -o /dev/null -silient http://purplehoodie.com
-    sudo yum -y update &
-    ```
+      ```
+      curl http://www.google.com
+      curl http://www.facebook.com
+      sudo yum -y update &
+      ```
     
-4. Navigate to **Discovery -> Traffic -> DNS**.
-5. This provides a summary of the traffic that Valtix gathered from DNS query logs. 
-6. Click on **Logs**. You should see the traffic that you generated to Google and Facebook.  
+4. Navigate to **Discovery -> Traffic -> DNS**. This provides a summary of the traffic that Valtix gathered from DNS query logs and correlates it with threat intelligence and your asset inventory. 
+5. Click on **Logs**. You should see the traffic that you generated to Google and Facebook.  
 ![DNS](DNS_traffic.png)
-7. Click on **Malicious Categories**. If Valtix detects traffic that could potentially be malicious, Valtix highlights those sessions for users. Navigate back to Summary. This provides a better view to see malicious activities.
-8. The traffic generated to purplehoodie is a potential malicious site categorized by brightcloud. If you lookup purlehoodie.com in [brightcloud url-lookup](https://www.brightcloud.com/tools/url-ip-lookup.php), you'll realize that it's high risk.
-9. Navigate to **Discovery -> Traffic -> VPC.**
-10. Through VPC flow logs, Valtix provides a summary on VPC traffic and where it is connecting to. 
+6. Let's generate some traffic to AWS Cloud Services using AWS CLI
+
+     *  Navigate back to spoke-z1-app instance from session manager.
+     *  Generate traffic with the following AWS cli command:
+
+
+    ```
+    aws cli
+    aws s3 ls
+    aws lambda list-functions
+    aws --region us-east-1lambda list-functions
+    aws --region us-east-1 lambda list-functions
+    aws rds describe-account-attributes
+    aws --region us-east-1 rds describe-account-attributes
+    aws redshift describe-account-attributes
+    aws --region us-east-1 redshift describe-account-attributes
+    aws --region us-east-1 kafka list-clusters
+    aws cloudfront list-distributions
+    ```
+
+7. Navigate to **Discovery -> Traffic -> DNS**. 
+8. Scroll down to the bottom of the page. Find "Top CSP Services" treemap. Valtix shows you information on what CSP Services your environment is using so you can build policies based on Cloud Services.
+![Cloud_Service](CSP_Services.png)
+9. Let's generate some traffic to malicious sites.
+
+     * Navigate back to spoke-z1-app instance from session manager.
+     * Generate traffic by executing below cli command:
+
+    ```
+    wget --no-proxy --no-check-certificate  --post-data 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' -O /tmp/av.log https://www.example.com
+    wget -O /dev/null -o /dev/null http://mspy.com
+    wget -O /dev/null -o /dev/null http://17ebook.com
+    wget -O /dev/null -o /dev/null http://purplehoodie.com
+    ```
+
+10. Click on **Malicious Categories**. If Valtix detects traffic that could potentially be malicious, Valtix highlights those sessions for users. Navigate back to Summary. This provides a better view to see malicious activities.
+11. The traffic generated to purplehoodie is a potential malicious site categorized by brightcloud. If you lookup purlehoodie.com in [brightcloud url-lookup](https://www.brightcloud.com/tools/url-ip-lookup.php), you'll realize that it's high risk.
+12. Navigate to **Discovery -> Traffic -> VPC.** Valtix provides a summary based on VPC flow log and correlates it with threat intelligence and your asset inventory. 
+13. Find **VPC Traffic** and **Instance Traffic** graphs. These graphs provides you with which VPC and Instance traffic distribution. You could potentially identify if any of your instances are being used as bots.
 <br>
