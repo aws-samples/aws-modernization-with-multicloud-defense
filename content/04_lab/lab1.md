@@ -52,6 +52,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
       *  Navigate to AWS console EC2 Service page and select spoke-z1-app instance.
       *  Click on "Connect" button at the top.
       *  Use session manager to connect to your instance.
+         ![SSM](SSM.png)
       *  Generate traffic to following website from the instance's session manager console:
 
       ```
@@ -72,15 +73,11 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
     ```
     aws cli
     aws s3 ls
-    aws lambda list-functions
-    aws --region us-east-1lambda list-functions
+    aws cloudfront list-distributions
     aws --region us-east-1 lambda list-functions
-    aws rds describe-account-attributes
     aws --region us-east-1 rds describe-account-attributes
-    aws redshift describe-account-attributes
     aws --region us-east-1 redshift describe-account-attributes
     aws --region us-east-1 kafka list-clusters
-    aws cloudfront list-distributions
     ```
 
 7. Navigate to **Discovery -> Traffic -> DNS**. 
