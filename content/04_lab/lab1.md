@@ -51,9 +51,9 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 
       *  Navigate to AWS console EC2 Service page and select spoke-z1-app instance.
       *  Click on "Connect" button at the top.
-      *  Use session manager to connect to your instance.
+      *  Use Session Manager(SSM) to connect to your instance.
          ![SSM](SSM.png)
-      *  Generate traffic to following website from the instance's session manager console:
+      *  Generate traffic to following website from the instance's Session Manager(SSM) console:
 
       ```
       curl http://www.google.com
@@ -66,7 +66,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 ![DNS](DNS_traffic.png)
 6. Let's generate some traffic to AWS Cloud Services using AWS CLI
 
-     *  Navigate back to spoke-z1-app instance from session manager.
+     *  Navigate back to spoke-z1-app instance from Session Manager(SSM).
      *  Generate traffic with the following AWS cli command:
 
 
@@ -85,7 +85,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 ![Cloud_Service](CSP_Services.png)
 9. Let's generate some traffic to malicious sites.
 
-     * Navigate back to spoke-z1-app instance from session manager.
+     * Navigate back to spoke-z1-app instance from Session Manager(SSM).
      * Generate traffic by executing below cli command:
 
     ```
