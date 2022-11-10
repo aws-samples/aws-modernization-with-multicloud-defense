@@ -6,10 +6,19 @@ weight: 7
 
 # Lab 3: Defend
 
-In this lab, you will create a tag-based policy to:
+In this lab, you will create a tag-based policies to:
 
+  * allow AWS Services to keep SSM connectivity
   * prevent social security information from being exported from one of the spoke instances. 
   * allow connection to approved github accounts only.
+
+
+Two rules will be created in this lab:
+
+  1. Allow AWS Services
+  2. For all instances tagged as "prod":<br>
+         - prevent a list of social security numbers being transferred out <br>
+         - allow connection to github repository "valtix-security", but not other github repository.
 
 Below is a diagram to show how policy is related to policy ruleset that is applied on the Gateways.
 
@@ -34,8 +43,16 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 	3. Select **Src/Dest**.
 	4. Provide a name (e.g vm-tag-prod)
 	5. Select the object type as **User Defined Tag**
-	6. Under the Instances Tag table, select the key "**Category**" and value "**prod**"
-	7. Click **Save** to save the address object
+	6. Under the Instances Tag table, select the key "**Category**" and value "**prod**".
+	7. Click **Save** to save the address object.
+	8. Click **Create Address**.
+	9. Select **Src/Dest**.
+	10. Provide a name (e.g AWS-Services).
+	11. Select the object type as **Service End Point (Cloud Service IP)**
+	12. Select the CSP Account that was onboarded in lab 1.
+	13. Select **AMAZON** for Cloud Service IP.
+	14. Select **US East (N. Virginia) us-east-1** for the Region.
+	13. Click **Save** to save the address object
 
 3. Create Data Loss Protection Profile
 	1. Go to **Manage -> Profiles -> Network Threats**.
@@ -70,6 +87,7 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
      	Return Status Code | 502
 
 	7. Click **Save**
+
 5. Create Policy in Ruleset. Now we have all the components to create a policy. 
 	1. Click **Manage -> Security Policies -> Rule Sets**
 	2. Click the "valtix-sample-egress-policy-ruleset" ruleset.
@@ -89,7 +107,20 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
      	URL Filtering | allow-valtix-security-github
 
 	5. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
-	6. Click **Save Changes**.
+	6. Click **Add** to create a new rule.  A new rule editor opens in the slide over panel on the right
+	7. Fill in the following information:
+
+     	Parameter| Value
+     	---------|------
+     	Name | AWS_Services
+     	Type | Forwarding
+     	Service | valtix-sample-egress-forwarding-snat
+     	Source | any-private-rfc1918
+     	Destination | AWS-Services
+     	Action | Allow Log
+
+	8. Move the newly created rule above the Egress_prod rule by dragging the rule to the top.
+	9. Click **Save Changes**.
 <br><br>
 
       --- 
