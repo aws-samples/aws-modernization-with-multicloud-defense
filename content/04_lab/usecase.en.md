@@ -1,10 +1,9 @@
 ---
 title: "Use Case"
 chapter: true
-weight: 2
+weight: 5
 ---
 
-# Use Case
 
 Valtix provides network visibility and control of your public cloud deployments to protect them for a variety of scenarios: ingress, egress, and east-west. Managing cloud infrastructure is a nightmare as cloud deployments happen at the touch of a button. Security maintenance of patching and upgrading software may disrupt the network service, resulting in countless hours of troubleshooting. Valtix sees the pain and hence provides users with:
 

@@ -1,10 +1,10 @@
 ---
 title: "Conclusion"
 chapter: true
-weight: 9
+weight: 10
 ---
 
-# Conclusion
+![Valtix](/static/14-content/valtix.jpg)
 
 That was easy! As promised at the beginning, deploying security in the cloud is easy. This workshop gave an insight into how simple and quick it is to deploy security with Valtix. The complex and mundane work is fully automated through Valtix’s three step process of discover, deploy and defend. But there’s more to it.
 

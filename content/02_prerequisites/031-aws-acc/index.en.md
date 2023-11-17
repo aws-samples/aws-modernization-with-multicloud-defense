@@ -1,6 +1,6 @@
 ---
 chapter: false
-title: AWS Account
+title: Your own AWS Account
 weight: 31
 ---
 

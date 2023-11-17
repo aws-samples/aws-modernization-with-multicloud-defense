@@ -1,14 +1,13 @@
 ---
 title: "Lab 2: Deploy"
 chapter: true
-weight: 6
+weight: 7
 ---
 
-# Lab 2: Deploy
 
 In Lab 1, the enablement of Valtix’s discovery features provided an inventory of the account and what traffic type was in the network. In a single click, you can see if any instances are potentially connecting to malicious destination.  In this lab, we will secure the network by deploying a Service VPC with Valtix Gateway in a hub-n-spoke model. Below is what we will achieve after this lab.
 
-![Centralized_VPC](centralized_model.png)
+![Centralized_VPC](/static/16-lab/centralized_model.png)
 
 ## Procedure
 
@@ -43,13 +42,18 @@ In Lab 1, the enablement of Valtix’s discovery features provided an inventory 
      
 6. Click **Save & Continue**
 7. You will be landed on the inventory page(**Manage -> Cloud Accounts -> Inventory**). Click on VPCs/VNets. 
-![VPC](Inventory_VPC.png)
+
+![VPC](/static/16-lab/Inventory_VPC.png)
+
 8. A list of all the VPCs in your account is shown here. This table will indicate whether the VPC is secured by Valtix. Find the spoke VPC that was deployed in the pre-requisite section.
-9. Click on Secure button and select the Service VPC that was created in step 3.<br>
-![secure](secure.png) <br>
-10. Checkbox the all route table entries in the Route Table section. This will change the subnet route table to point to Transit Gateway. <br>
+9. Click on Secure button and select the Service VPC that was created in step 3.
+
+![secure](/static/16-lab/secure.png)
+
+10. Checkbox the all route table entries in the Route Table section. This will change the subnet route table to point to Transit Gateway. 
+
 **Note:** After changing the default route, you may lose connection to the sample ec2 instance. Reconnect to your sample ec2 instance.
-<br><br>
+
 
 ## Verification 
 

@@ -1,10 +1,9 @@
 ---
 title: "Lab 3: Defend"
 chapter: true
-weight: 7
+weight: 8
 ---
 
-# Lab 3: Defend
 
 In this lab, you will create a tag-based policies to:
 
@@ -22,7 +21,7 @@ Two rules will be created in this lab:
 
 Below is a diagram to show how policy is related to policy ruleset that is applied on the Gateways.
 
-![Ruleset](ruleset.svg)
+![Ruleset](/static/16-lab/ruleset.png)
 
 
 ## Procedure
