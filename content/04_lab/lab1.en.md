@@ -1,10 +1,9 @@
 ---
 title: "Lab 1: Discover"
 chapter: true
-weight: 5
+weight: 6
 ---
 
-# Lab 1: Discover
 
 
 In Lab 1, you will enable Valtix’s discovery features and be able to gather inventory and traffic information about your AWS account.
@@ -52,7 +51,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
       *  Navigate to AWS console EC2 Service page and select spoke-z1-app instance.
       *  Click on "Connect" button at the top.
       *  Use Session Manager(SSM) to connect to your instance.
-         ![SSM](SSM.png)
+         ![SSM](/static/16-lab/SSM.png)
       *  Generate traffic to following website from the instance's Session Manager(SSM) console:
 
       ```
@@ -63,7 +62,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
     
 4. Navigate to **Discovery -> Traffic -> DNS**. This provides a summary of the traffic that Valtix gathered from DNS query logs and correlates it with threat intelligence and your asset inventory. 
 5. Click on **Logs**. You should see the traffic that you generated to Google and Facebook.  
-![DNS](DNS_traffic.png)
+![DNS](/static/16-lab/DNS_traffic.png)
 6. Let's generate some traffic to AWS Cloud Services using AWS CLI
 
      *  Navigate back to spoke-z1-app instance from Session Manager(SSM).
@@ -82,7 +81,7 @@ In Lab 1, you will enable Valtix’s discovery features and be able to gather in
 
 7. Navigate to **Discovery -> Traffic -> DNS**. 
 8. Scroll down to the bottom of the page. Find "Top CSP Services" treemap. Valtix shows you information on what CSP Services your environment is using so you can build policies based on Cloud Services.
-![Cloud_Service](CSP_Services.png)
+![Cloud_Service](/static/16-lab/CSP_Services.png)
 9. Let's generate some traffic to malicious sites.
 
      * Navigate back to spoke-z1-app instance from Session Manager(SSM).

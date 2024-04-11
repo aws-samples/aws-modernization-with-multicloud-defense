@@ -1,6 +1,6 @@
 ---
 date: "2023-Nov-13"
-title: AWS Event
+title: AWS Event with Workshop Studio
 weight: 32
 ---
 

@@ -4,7 +4,7 @@ pre: <b>   </b>
 tags:
 - advanced
 title: Prerequisites
-weight: 15
+weight: 2
 ---
 
 Please choose whether you are running this workshop in your own AWS account, or in EventEngine at an AWS event.
