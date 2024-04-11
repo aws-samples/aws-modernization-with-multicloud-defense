@@ -1,6 +1,6 @@
-## MODERNIZE MULTI-ACCOUNT NETWORK SECURITY WITH VALTIX
+## MODERNIZE MULTI-ACCOUNT NETWORK SECURITY WITH Cisco Multicloud Defense
 
-This is the github repository for AWS workshop presented by Valtix. To view the workshop, please visit AWS workshop page.
+This is the github repository for AWS workshop presented by Cisco Multicloud Defense. To view the workshop, please visit AWS workshop page.
 
 
 ## Security
