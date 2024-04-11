@@ -1,4 +1,4 @@
-## MODERNIZE MULTI-ACCOUNT NETWORK SECURITY WITH Cisco Multicloud Defense
+## MODERNIZE MULTI-ACCOUNT NETWORK SECURITY WITH CISCO MULTICLOUD DEFENSE
 
 This is the github repository for AWS workshop presented by Cisco Multicloud Defense. To view the workshop, please visit AWS workshop page.
 
