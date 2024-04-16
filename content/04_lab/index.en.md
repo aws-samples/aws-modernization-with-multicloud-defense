@@ -4,9 +4,13 @@ chapter: true
 weight: 4
 ---
 
+This workshop is structured to provide a workflow on how user can secure their VPCs from ground up. This is the breakdown:
 
-This labs will help you guide you through the process on how to secure your network. Below is an high level overview of the workflow of **Discover, Deploy, Defend** labs. Below diagram will help you understand the workflow:
+- **Discover:** Discover what is in your account to understand what needs to be secure.
+- **Deploy:** Deploy a hub-and-spoke security model with Multicloud Defense.
+- **Defend:** Configure policies to defend and protect your network.
 
-![workflow](/static/16-lab/workflow.png) 
+
+
 
 
