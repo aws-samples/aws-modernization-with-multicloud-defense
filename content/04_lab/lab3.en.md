@@ -1,5 +1,5 @@
 ---
-title: "Lab 3: Defend"
+title: "Defending with Egress Policy"
 chapter: true
 weight: 8
 ---
@@ -26,16 +26,16 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 
 ## Procedure
 
-1. To create tag-based policy we need to first tag our workloads properly. Let's go to the AWS console and add the tags to the spoke EC2 instances
+1. To create tag-based policy we need first to tag our workloads properly. Let's go to the AWS console and add the tags to the spoke EC2 instances
 
    * Add a tag to the EC2 instance spoke-z1-app with key "**Category**" and value "**prod**"
    * Add a tag to the EC2 instance spoke-z2-app with key "**Category**" and value "**dev**"
 
      ---
      **Note:** 
-     If you go to *Discover -> Inventory -> Tags*, you'll notice there is a Tag Name "*Category*" that shows up. Valtix continuous discovery picked up the tags that was just created, in real-time
+     If you go to *Discover -> Inventory -> Tags*, you'll notice there is a Tag Name "*Category*" that shows up. Multicloud Defense continuous discovery picked up the tags that were just created, in real-time
      ---
-2. Create Address Object
+2. Create an Address Object
 
 	1. Navigate to **Manage -> Security Policies -> Addresses**
 	2. Click **Create Address**.
@@ -89,7 +89,7 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 
 5. Create Policy in Ruleset. Now we have all the components to create a policy. 
 	1. Click **Manage -> Security Policies -> Rule Sets**
-	2. Click the "valtix-sample-egress-policy-ruleset" ruleset.
+	2. Click the "ciscomcd-sample-egress-policy-ruleset" ruleset.
 	3. Click **Add** to create a new rule.  A new rule editor opens in the slide over panel on the right
 	4. Fill in the following information:
 
@@ -97,23 +97,23 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
      	---------|------
      	Name | Egress_prod
      	Type | Forward Proxy
-     	Service | valtix-sample-egress-forward-proxy
+     	Service | ciscomcd-sample-egress-forward-proxy
      	Source | vm-tag-prod
      	Destination | any
      	Action | Allow Log
-     	Network Intrusion | valtix-sample-ips-balanced-alert
+     	Network Intrusion | ciscomcd-sample-ips-balanced-alert
      	Data Loss Prevention | block_social_security
      	URL Filtering | allow-valtix-security-github
 
-	5. Move the newly created rule above the valtix-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
-	6. Click **Add** to create a new rule.  A new rule editor opens in the slide over panel on the right
+	5. Move the newly created rule above the ciscomcd-sample-egress-forwarding-allow-snat rule by dragging the rule to the top.
+	6. Click **Add** to create a new rule.  A new rule editor opens in the slide-over panel on the right
 	7. Fill in the following information:
 
      	Parameter| Value
      	---------|------
      	Name | AWS_Services
      	Type | Forwarding
-     	Service | valtix-sample-egress-forwarding-snat
+     	Service | ciscomcd-sample-egress-forwarding-snat
      	Source | any-private-rfc1918
      	Destination | AWS-Services
      	Action | Allow Log
@@ -151,6 +151,6 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 7. Download a file from a different github account. eg `curl -o test_file.txt -kv https://github.com/michaelvaltix/tutorials/blob/main/test_file.txt`. This connection should be denied.
 8. Navigate to **Investigate -> Flow Analytics -> URL Filtering**.
 9. You should see both the allow session and the deny session for the 2 curl from github.
-10. Notice that we did not specify any IP address in the policy, but the vm instance still matches the policy. This is because of the tag-based object that we used in the policy. This policy will be applied to any instance that has the tag **prod**. This allows for the policy to be dynamic. Future instances that is considered as prod environment will by this rule applied simply by adding tag value {Category: prod}  
-11. Repeat the verification steps for spoke-z2-app. You will notice that all traffic passes because it is matching a different policy. It is matching "valtix-sample-egress-forwarding-allow" policy rather than the policy we created because spoke-z2-app does not have the correct tag. 
+10. Notice that we did not specify any IP address in the policy, but the vm instance still matches the policy. This is because of the tag-based object that we used in the policy. This policy will be applied to any instance with the tag **prod**. This allows for the policy to be dynamic. Future instances that is considered as prod environment will by this rule applied simply by adding tag value {Category: prod}  
+11. Repeat the verification steps for spoke-z2-app. You will notice that all traffic passes because it is matches different policy. It matches the "ciscomcd-sample-egress-forwarding-allow" policy rather than the policy we created because spoke-z2-app does not have the correct tag. 
 
