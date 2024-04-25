@@ -1,5 +1,5 @@
 ---
-title: "Deploy Centralized Egress"
+title: "2a - Deploy Centralized Egress"
 chapter: true
 weight: 7
 ---

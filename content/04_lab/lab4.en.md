@@ -4,6 +4,9 @@ chapter: true
 weight: 9
 ---
 
+::alert[The steps to "Deploy Centralized Egress" and this lab section are the same. If you have already gone through "Deploy Centralized Egress," you can skip to "Defending with East-West" section.]{type="info"}
+
+
 In Lab 1, the enablement of Multicloud Defense’s discovery feature provided an inventory of the account and what traffic type was in the network. In a single click, you can see if any instances are potentially connecting to a malicious destination.  We will secure the network in this lab by deploying a Service VPC with Multicloud Defense Gateway in a hub-n-spoke model. Below is what we will achieve after this lab.
 
 ![Centralized_VPC](/static/16-lab/centralized_model.png)

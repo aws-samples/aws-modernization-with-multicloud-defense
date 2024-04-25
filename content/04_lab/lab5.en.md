@@ -22,7 +22,7 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 
 ## Procedure
 
-1. To create tag-based policy we need first to tag our workloads properly. Let's go to the AWS console and add the tags to the spoke EC2 instances
+1. To create a tag-based policy we need first to tag our workloads properly. Let's go to the AWS console and add the tags to the spoke EC2 instances
 
    * Add a tag to the EC2 instance spoke-z1-app with key "**Environment**" and value "**prod**"
    * Add a tag to the EC2 instance spoke-z2-app with key "**Environment**" and value "**dev**"
@@ -30,8 +30,7 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
    * Add a tag to the EC2 instance spoke-z2-app2 with key "**Environment**" and value "**dev**"
 
      ---
-     **Note:** 
-     If you go to *Discover -> Inventory -> Tags*, you'll notice there is a Tag Name "*Environment*" that shows up. Multicloud Defense continuous discovery picked up the tags that were just created, in real-time
+     ::alert[**Note:**<br> If you go to *Discover -> Inventory -> Tags*, you'll notice that a Tag Name "*Environment*" shows up. Multicloud Defense continuously discovered the tags that had just been created in real-time.]{type="info"}
      ---
 2. Create an Address Object
 
@@ -83,14 +82,13 @@ Below is a diagram to show how policy is related to policy ruleset that is appli
 <br><br>
 
       --- 
-      **Policy Explanation:**<br>
-      The policy that we just created will match all workloads that is tagged as "prod" and the policy will apply advanced security profiles(IPS, DLP, URL Filtering) on the session that is matched. All "prod" workloads can connect to github repository named "valtix-security" and no other URLs. 
-      ---
+::alert[Policy Explanation: <br>The policy that we just created will match all workloads that are tagged as "prod," and the policy will apply advanced security profiles(IPS, DLP, URL Filtering) on the session that is matched. All "prod" workloads can connect to the GitHub repository named "valtix-security" and no other URLs. ]{type="info"}
+     
     
 
 ## Verification
 
 1. SSH to the EC2 instance named **spoke-z1-app**
-2. Ping from spoke-z1-app to spoke-z1-app2. This should work.
-3. Ping from spoke-z1-app to spoke-z2-app2. This should be denied.
+2. Perform a curl from spoke-z1-app to spoke-z1-app2. This should work.
+3. Perform a curl fromspoke-z1-app to spoke-z2-app2. This should be denied.
 

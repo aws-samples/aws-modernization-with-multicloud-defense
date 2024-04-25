@@ -1,5 +1,5 @@
 ---
-title: "Onboarding + Discover"
+title: "1 - Onboarding + Discover"
 chapter: true
 weight: 6
 ---
