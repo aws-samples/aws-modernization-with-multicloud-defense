@@ -1,5 +1,5 @@
 ---
-title: "Defending with Egress Policy"
+title: "2b - Defending with Egress Policy"
 chapter: true
 weight: 8
 ---
