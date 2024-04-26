@@ -1,5 +1,5 @@
 ---
-title: "1 - Onboarding + Discover"
+title: "Lab 1 - Onboarding + Discovery"
 chapter: true
 weight: 6
 ---
@@ -7,6 +7,9 @@ weight: 6
 
 
 In Lab 1, you will enable Multicloud Defense’s discovery feature and be able to gather inventory and traffic information about your AWS account.
+
+___
+![alt Lab Architecture](/static/16-lab/lab1_architecture.png "Lab1 Architecture")
 
 ## Procedure
 
@@ -57,11 +60,11 @@ In Lab 1, you will enable Multicloud Defense’s discovery feature and be able t
          ![SSM](/static/16-lab/SSM.png)
       *  Generate traffic to following website from the instance's Session Manager(SSM) console:
 
-      ```
+      :::code{language=bash}
       curl http://www.google.com
       curl http://www.facebook.com
       sudo yum -y update &
-      ```
+      :::
     
 4. Navigate to **Discovery -> Traffic -> DNS**. This provides a summary of the traffic that Multicloud Defense gathered from DNS query logs and correlates it with threat intelligence and your asset inventory. 
 5. Click on **Logs**. You should see the traffic that you generated to Google and Facebook.  
@@ -72,7 +75,7 @@ In Lab 1, you will enable Multicloud Defense’s discovery feature and be able t
      *  Generate traffic with the following AWS cli command:
 
 
-    ```
+    :::code{language=bash}
     aws cli
     aws s3 ls
     aws cloudfront list-distributions
@@ -80,7 +83,7 @@ In Lab 1, you will enable Multicloud Defense’s discovery feature and be able t
     aws --region us-east-1 rds describe-account-attributes
     aws --region us-east-1 redshift describe-account-attributes
     aws --region us-east-1 kafka list-clusters
-    ```
+    :::
 
 7. Navigate to **Discovery -> Traffic -> DNS**. 
 8. Scroll down to the bottom of the page. Find "Top CSP Services" treemap. Multicloud Defense shows you what CSP Services your environment uses so you can build policies based on Cloud Services.
@@ -90,12 +93,12 @@ In Lab 1, you will enable Multicloud Defense’s discovery feature and be able t
      * Navigate back to spoke-z1-app instance from Session Manager(SSM).
      * Generate traffic by executing the below cli command:
 
-    ```
+    :::code{language=bash}
     wget --no-proxy --no-check-certificate  --post-data 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' -O /tmp/av.log https://www.example.com
     wget -O /dev/null -o /dev/null http://mspy.com
     wget -O /dev/null -o /dev/null http://17ebook.com
     wget -O /dev/null -o /dev/null http://purplehoodie.com
-    ```
+    :::
 
 10. Click on **Malicious Categories**. When Multicloud Defense detects traffic that could potentially be malicious, Multicloud Defense highlights those sessions for users. Navigate back to **Summary**. This provides a better view to see malicious activities.
 11. The traffic generated to Purplehoodie is a potentially malicious site categorized by Brightcloud. If you look up purlehoodie.com in [brightcloud url-lookup](https://www.brightcloud.com/tools/url-ip-lookup.php), you'll realize it's high risk.
