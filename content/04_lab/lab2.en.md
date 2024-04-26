@@ -1,13 +1,14 @@
 ---
-title: "2a - Deploy Centralized Egress"
+title: "Lab 2 - Deploy Centralized Security Architecture"
 chapter: true
 weight: 7
 ---
 
 
-In Lab 1, the enablement of Multicloud Defense’s discovery feature provided an inventory of the account and what traffic type was in the network. In a single click, you can see if any instances are potentially connecting to a malicious destination.  We will secure the network in this lab by deploying a Service VPC with Multicloud Defense Gateway in a hub-n-spoke model. Below is what we will achieve after this lab.
+In Lab 1, the enablement of Multicloud Defense’s discovery feature provided an inventory of the account and what traffic type was in the network. In a single click, you can see if any instances are potentially connecting to a malicious destination.  We will secure the network in this lab by deploying a Service VPC with Multicloud Defense Gateway in a centralized, hub-n-spoke model. Below is what we will achieve after this lab.
 
-![Centralized_VPC](/static/16-lab/centralized_model.png)
+___
+![alt Lab2 Architecture](/static/16-lab/lab2_architecture.png "Lab2 Architecture")
 
 ## Procedure
 
@@ -46,7 +47,7 @@ In Lab 1, the enablement of Multicloud Defense’s discovery feature provided an
 ![VPC](/static/16-lab/Inventory_VPC.png)
 
 8. A list of all the VPCs in your account is shown here. This table will indicate whether the VPC is secured by Multicloud Defense. Find the spoke VPC that was deployed in the pre-requisite section.
-9. Click on **Secure** button and select the Service VPC that was created in step 3.
+9. Click on **Secure** button for **ciscomcd-vpc** and **ciscomcd-vpc2** and select the Service VPC that was created in step 3. Note: If you already completed "Deploy Centralized Egress," ciscomcd-vpc entry would have been protected. 
 
 ![secure](/static/16-lab/secure.png)
 
@@ -63,10 +64,10 @@ In Lab 1, the enablement of Multicloud Defense’s discovery feature provided an
 4. Check the Gateway, shown in the table and has the status **ACTIVE**.
 5. From the EC2 instance, generate traffic to Google and Facebook.
 
-    ```
+    :::code{language=bash}
     curl http://www.google.com
     curl http://www.facebook.com
-    ```
+    :::
     
 6. Navigate to **Investigate -> Flow Analytics -> Traffic Summary**. This gives an overview of traffic inspected by Multicloud Defense Gateway.
 7. Click on Logs. You should see your sessions on Google and Facebook in the Logs table.
