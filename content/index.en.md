@@ -1,5 +1,5 @@
 ---
-title: "Easy Button for Multi-Account Network Security with Cisco Multicloud Defense"
+title: "Cloud-Native Network Security with Cisco Multicloud Defense"
 chapter: true
 weight: 5
 ---
@@ -9,7 +9,7 @@ weight: 5
 
 ## Welcome
 
-In this workshop, you will learn why DevOps is a pattern for modernization and how to use patterns to release features and functionality at a faster pace. Multicloud Defense will demonstrate how you can deploy a scalable security architecture that secures your workloads in a matter of minutes.
+In this workshop, you will learn why DevOps is a pattern for modernization and how to use patterns to release features and functionality at a faster pace. Multicloud Defense will demonstrate how you can deploy a scalable security architecture that secures your workloads in minutes.
 
 Multicloud Defense is the first and only multi-cloud network security platform delivered as a service that enables cloud teams to meet the most stringent security requirements in a cloud-first & simple way. Whether you are planning to move to the cloud or looking to simplify your security workflow on existing infrastructure, Multicloud Defense can help you get there. 
 
