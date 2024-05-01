@@ -1,13 +1,15 @@
 ---
 date: "2023-Nov-13"
 chapter: false
-title: Deploying Sample Application
+title: Deploying Sample Application in AWS
 weight: 34
 ---
 
+::alert[If you are running the workshop at AWS event with workshop studio, the sample application is predeployed in your sandbox AWS account. You can skip this section and proceed to [Obtaining Cisco tenant](../035-cisco-tenant)]{type="info"}
+
 This phase of the lab guide involves launching a demo application for testing, ensuring it doesn't interfere with ongoing operations with you existing workloads. If you'd like to proceed with the workshop using your current workload, this phase can be omitted.
 
-## Deploying Sample Application
+## Deploying Sample Application in AWS
 
 To complete this lab, you will need an application/instance for Multicloud Defense to protect. If you don't have a readily avaliable application/instance, follow these steps to deploy a sampe application for this workshop. 
 
@@ -36,8 +38,6 @@ To complete this lab, you will need an application/instance for Multicloud Defen
      
      * This would be referred to as spoke deployment or spoke1-vpc. If you want to use your own ec2 instances for this workshop, whenever there is reference to spoke, you can use your own ec2 instances.
 
-
-3. A login to [Multicloud Defense Controller Portal](https://www.defenseorchestrator.com/). To obtain an account to Multicloud Defense Controller, please see section: Obtaining Cisco Tenant 
 
 
 
